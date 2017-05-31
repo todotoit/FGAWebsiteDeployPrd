@@ -1,0 +1,120 @@
+<!DOCTYPE html><html><head><script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script><style type="text/css">body{
+					padding: 0;
+					margin: 0;
+				}
+				.container{
+					position: relative;
+					height: 360px;
+
+					border: 1px solid red;
+				}
+				.container iframe{
+					position: absolute;
+				}
+
+				.container .block{
+					position: absolute;
+					width: 640px;
+					height: 360px;
+				}
+
+				#head{
+					width: 5px;
+					height: 20px;
+					background-color: orange;
+				}</style></head><body><div class="container"><div id="youtubeplayer"></div></div><div id="head"></div><button id="playpause">play/pause</button> <button id="seek">goto half</button><script>var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      var currentState
+      var intervalHead
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtubeplayer', {
+          height: '360',
+          width: '640',
+          videoId: 'hJcESYiBz-A',
+          playerVars:{
+          	controls: 0,
+          	version: 3,
+          	showinfo: 0,
+          	autoplay: 1,
+          	autohide: 1,
+          	modestbranding: 1,
+          	rel: 0,
+          	cc_load_policy: 1,
+          	cc_lang_pref: 'en'
+          },
+          
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+            'onError': onError
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        console.log('ready', player.getDuration())
+        var plr = event.target.playVideo();
+
+        intervalHead = setInterval(drawHead, 50)
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+      	currentState = event.data
+      	console.log('currentState', currentState)
+      	/*
+      	-1 (unstarted)
+		0 (ended)
+		1 (playing)
+		2 (paused)
+		3 (buffering)
+		5 (video cued).
+		*/
+
+		if(currentState == 0){
+			clearInterval(intervalHead)
+		}
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+
+      function onError(e){
+      	console.log(e)
+      }
+
+
+
+      function drawHead(){
+      	var c = player.getCurrentTime()
+      	var t = player.getDuration()
+      	var w = $(document).width()
+      	var x = c*w/t
+      	$('#head').css('transform', 'translate('+x+'px, 0)')
+      }
+      
+
+
+
+      $('#playpause').on('click', function(){
+
+      	console.log(player.getCurrentTime())
+
+      	if(currentState == 1){
+      		player.pauseVideo()
+      	}
+      	if(currentState == 2){
+      		player.playVideo()
+      	}
+      })
+
+
+      $('#seek').on('click', function(){
+      	var h = player.getDuration() / 2
+      	player.seekTo(h)
+      })</script></body></html>
