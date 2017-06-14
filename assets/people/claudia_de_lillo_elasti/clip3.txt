@@ -1,5 +1,7 @@
 donna
 potere
+omologo
+maschile
 esempio
 coetanee
 non

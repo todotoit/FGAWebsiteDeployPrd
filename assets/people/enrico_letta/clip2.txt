@@ -3,6 +3,7 @@ Troveremo
 Essere
 Paesi
 Europei
+stati
 Centro
 Mondo
 Secolo
@@ -10,6 +11,7 @@ Secoli
 Scorso
 Scorsi
 Saremo
+molto
 Più
 Piccoli
 Cina
@@ -20,6 +22,7 @@ Potenze
 Emergenti
 Influire
 Dovremo
+metterci
 Insieme
 Forza
 Europa
@@ -36,10 +39,14 @@ Difesa
 Paesaggio
 Ambiente
 Lavoratori
+alcuni
 Parti
+tutti
+insieme
 Applicati
 Dire
 Italiani
+credo
 Francesi
 Tedeschi
 Spagnoli
@@ -47,5 +54,7 @@ Andare
 Direzione
 Unita
 Nazionalismo
+tradizionalmente
+basso
 Leader
 Convincere
