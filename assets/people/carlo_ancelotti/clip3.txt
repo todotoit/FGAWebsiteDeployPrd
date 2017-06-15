@@ -2,6 +2,8 @@ prospettive
 future
 calciatore
 atleta
+continua
+evoluzione
 Miglioreranno
 Più
 Diciamo
